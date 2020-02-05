@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.slick-slider {
+  height: 100%;
+  width: 100%;
+
+  .slick-dots {
+    bottom: 0;
+  }
+
+  .slick-list, .slick-track {
+    height: 100%;
+  }
+
+  .slick-slide > div {
+    height: 100%;
+  }
+}
+
+.slick-vertical {
+  position: absolute;
+  height: 100%;
+  z-index: 1000;
+
+  .slick-list, .slick-track, .slick-slide, .slick-slide > div{
+    height: 100% !important;
+    width: 100% !important;
+    overflow: initial;
+  }
+}
+
+
+
