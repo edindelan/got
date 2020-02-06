@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import styled from "styled-components";
 
 
@@ -52,14 +53,14 @@ const Content = styled.div`
 class HouseSlide extends Component {
 
   render() {
-    const { data: { name, description}, className } = this.props;
+    const { data: { name, description, id}, className } = this.props;
     return (
       <Slide className={className}>
           <Content>
             <h3>HOUSE</h3>
             <h2>{name}</h2>
             <p>{description}</p>
-            <a href="#">Find out more</a>
+            <Link to={`/map/${id}`}>Find out more</Link>
           </Content>
       </Slide>
     )

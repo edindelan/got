@@ -8,6 +8,7 @@ const Player = styled.div`
   color: #fff;
   cursor: pointer;
   padding: 20px;
+  pointer-events: initial;
 `;
 
 
