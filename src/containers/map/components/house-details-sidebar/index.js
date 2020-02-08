@@ -12,12 +12,12 @@ import {
 import devider from "../../../../assets/divider.svg";
 import devider2 from "../../../../assets/devider2.svg";
 
-const HouseDetailsSidebar = ({ house, onClick }) => {
+const HouseDetailsSidebar = ({ house, handleSidebarClose }) => {
 
 
   return (
     <HouseDetailsContainer color={house.backgroundColor}>
-      <CloseButton color={house.backgroundColor} onClick={onClick}>X</CloseButton>
+      <CloseButton color={house.backgroundColor} onClick={handleSidebarClose}>X</CloseButton>
       <ImageContainer>
         <img src={house.image} alt=""/>
       </ImageContainer>

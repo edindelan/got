@@ -53,7 +53,7 @@ class MusicPlayer extends Component {
   render() {
     return (
       <Player onClick={this.togglePlayer}>
-        <img src={this.state.isMusicPlaying ? musicOn : musicOff}/>
+        <img src={this.state.isMusicPlaying ? musicOn : musicOff} alt=""/>
       </Player>
     )
   }

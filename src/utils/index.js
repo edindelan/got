@@ -1,0 +1,1 @@
+export const getPercent = (part, whole) => (part / whole) * 100;
