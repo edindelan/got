@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -8,14 +7,13 @@ import "../../App.scss";
 import HouseHorizontalSlide from "../../components/house-horizontal-slide";
 import HouseHorizontalSimpleSlide from "../../components/house-horizontal-simple-slide";
 import HouseVerticalSlide from "../../components/house-vertical-slide";
-import AudioPlayer from "../../components/audio-player";
+import Header from "../../components/header";
 
 import house1 from "../../assets/images/houses/house1.png";
 import house2 from "../../assets/images/houses/house2.png";
 import house3 from "../../assets/images/houses/house3.png";
 import house4 from "../../assets/images/houses/house4.png";
 import house5 from "../../assets/images/houses/house5.png";
-import logo from "../../assets/images/got-logo.png";
 
 const MainContainer = styled.div`
   height: 100vh;
@@ -44,26 +42,6 @@ const SliderContainer = styled.div`
    height: 100%;
    display: flex;
    overflow: hidden;
-`;
-
-const Header = styled.div`
-  position: absolute;
-  display: flex;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-  justify-content: space-between;
-`;
-
-const Logo = styled.div`
-  width: 20vw;
-  background-color: ${({color}) => color ? color : "#000"};
-  transition: background-color .3s linear;
-  padding: 1vw 2vw;
-  img {
-    width: 100%;
-  }
 `;
 
 const SliderControls = styled.div`
@@ -233,6 +211,8 @@ class Homepage extends Component {
     const currentSlideData = this.getCurrentSlideData();
     console.log('Current slide', currentSlideData);
     return (
+      <>
+        <Header color={currentSlideData.backgroundColor}/>
         <SliderContainer>
           <FirstHalf>
             <Slider {...settings2} asNavFor={this.state.nav3} ref={slider => (this.slider1 = slider)}>
@@ -271,6 +251,7 @@ class Homepage extends Component {
             </Slider>
           </SecondHalf>
         </SliderContainer>
+      </>
     );
   }
 }

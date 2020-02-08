@@ -9,6 +9,7 @@ const Player = styled.div`
   cursor: pointer;
   padding: 20px;
   pointer-events: initial;
+  opacity: 0.6;
 `;
 
 

@@ -2,11 +2,37 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import mapImage from "../../assets/images/got-map.jpg";
 import mapImageMini from "../../assets/images/got-map-mini.jpg";
-import { houses } from "../homepage"
+import { houses } from "../homepage";
+import ShieldIcon from "../../assets/svg-components/shield-icon";
+import BannerIcon from "../../assets/svg-components/banner-icon";
+import HouseDetailsContainer from "./components/house-details-sidebar";
+import Header from "../../components/header";
+
+const BannerIconLeft = styled(BannerIcon)`  
+  position: absolute;
+  left: -29px;
+  width: 26px;
+  height: 28px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+`;
+
+const BannerIconRight = styled(BannerIcon)`
+  position: absolute; 
+  width: 26px;
+  transform: rotateY(180deg);
+  right: -29px;
+  height: 28px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+`;
 
 const MapContainer = styled.div` 
   height: 100%;
   width: 100%;
+  display: flex;
 `;
 
 const MapImageContainer = styled.div`
@@ -30,11 +56,25 @@ const MapZoomPanel = styled.div`
   width: 250px;
   z-index: 100;
   user-select: none;
+  border-top: 10px solid ${({borderColor}) => borderColor || "#000"};
+  border-right: 10px solid ${({borderColor}) => borderColor || "#000"};
   img {
     width: 100%;
     display: inline-block;
     line-height: 0;
     float: left;
+  }
+  
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom:0;
+    left: 0;
+    right: 0;
+    background-color: ${({borderColor}) => borderColor || "#000"};
+    opacity: 0.3;
+    z-index: 10;
   }
 `;
 
@@ -43,74 +83,59 @@ const Square = styled.div`
   height: ${({dimensions}) => dimensions.height}%;
   top: ${({dimensions}) => dimensions.top}%;
   left: ${({dimensions}) => dimensions.left}%;
-  opacity: 0.5;
-  background-color: red;
+  opacity: 0.7;
+  background-color: ${({color}) => color || "#000"};
   position: absolute;
-  border: 1px solid red;
   pointer-events: none;
   user-select: none;
 `;
 
 
 const House = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 150px;
   top: ${({position}) => position.y}px;
   left: ${({position}) => position.x}px;
   transform: translate(-50%, -50%);
-  background-color: #fff;
   position: absolute;
-  border-radius: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 50px;
   flex-direction: column;
   cursor:pointer;
   img {
-    width: 100%;
+    position: absolute;
+    width: auto;
+    height: auto;
+    max-width: 80%;
+    max-height: 60%;
   }
 `;
 
 const HouseDots = styled.div`
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 10px; 
   transform: translate(-50%, -50%);
-  border-radius: 100%;
-  background-color: red;
   top: ${({position}) => position.y}%;
   left: ${({position}) => position.x}%;
   pointer-events: none;
 `;
 
-const HouseDetailsContainer = styled.div`
+
+
+const HouseName = styled.div`
   position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 250px;
-  height: 40%;
-  background-color: #fff;
-  overflow: hidden;
-  
-  img {
-    width: 100%;
+  font-family: 'Playfair Display',serif;
+  font-size: 24px;
+  bottom: 105%;
+  color: rgba(255,255,255,0.70); 
+  background-color: ${({color}) => color || "#000"};
+  padding: 2px 20px 6px 20px;
+  line-height: 1;
+  & ~ div{
+    margin-right: 10px;
   }
 `;
 
-// offsetTop: 0
-// offsetLeft: 0
-// offsetWidth: 896
-// offsetHeight: 292
-
-// scrollTop: 34
-// scrollLeft: 33
-// scrollWidth: 4001
-// scrollHeight: 2507
-// clientTop: 0
-// clientLeft: 0
-// clientWidth: 896
-// clientHeight: 292
 
 class Map extends Component {
   state = {
@@ -137,7 +162,8 @@ class Map extends Component {
         zoomPanelOverlyHeight: (clientHeight / scrollHeight) * 100,
         zoomPanelOverlyPositionTop: (scrollTop / scrollHeight) * 100,
         zoomPanelOverlyPositionLeft: (scrollLeft / scrollWidth) * 100,
-      })
+      });
+
     })
 
     const { match } = this.props;
@@ -195,6 +221,12 @@ class Map extends Component {
     })
   }
 
+  closeSidePanel = () => {
+    this.setState({
+      selectedHouse: null
+    });
+  }
+
   render() {
     const {
       zoomPanelOverlyWidth,
@@ -204,50 +236,67 @@ class Map extends Component {
       selectedHouse
     } = this.state;
 
+
     return (
-      <MapContainer>
-        <MapImageContainer ref={c => this.imageContainer = c}>
-          <OriginalSizeMapImage>
-            <img src={mapImage} alt="" width="4001" height="2504"/>
+      <>
+        <Header color={selectedHouse ? selectedHouse.backgroundColor : "#000"}/>
+        <MapContainer>
+          <MapImageContainer ref={c => this.imageContainer = c}>
+            <OriginalSizeMapImage>
+              <img src={mapImage} alt="" width="4001" height="2504"/>
+              {
+                houses.map(house => (
+                  <House
+                    key={house.id}
+                    position={house.mapPosition}
+                    onClick={() => this.handleHouseClick(house)}>
+
+                    <HouseName color={house.backgroundColor}>
+                      <BannerIconLeft color={house.backgroundColor}/>
+                      {house.name}
+                      <BannerIconRight color={house.backgroundColor}/>
+                    </HouseName>
+                    <ShieldIcon color={house.backgroundColor}/>
+                    <img src={house.image} alt=""/>
+                  </House>
+                ))
+              }
+            </OriginalSizeMapImage>
+
+          </MapImageContainer>
+          <MapZoomPanel
+            ref={c => this.mapZoomPanel = c}
+            onClick={e => this.handleZoomPanelClick(e)}
+            borderColor={selectedHouse && selectedHouse.backgroundColor}
+          >
+            <img src={mapImageMini} alt=""/>
             {
-              houses.map(house => (
-                <House
-                  key={house.id}
-                  position={house.mapPosition}
-                  onClick={() => this.handleHouseClick(house)}>
-                  {house.name}
-                  <img src={house.image} alt=""/>
-                </House>
+              this.imageContainer && this.mapZoomPanel && houses.map(house => (
+                <HouseDots
+                  position={this.translateBigMapCoordinatesToMiniMapCoordinates(house.mapPosition)}
+                >
+                  <ShieldIcon
+                    color={selectedHouse ? selectedHouse.backgroundColor : "#000"}
+                  />
+                </HouseDots>
               ))
             }
-          </OriginalSizeMapImage>
-        </MapImageContainer>
-        <MapZoomPanel ref={c => this.mapZoomPanel = c} onClick={e => this.handleZoomPanelClick(e)}>
-          <img src={mapImageMini} alt=""/>
-          {
-            this.imageContainer && this.mapZoomPanel && houses.map(house => (
-              <HouseDots
-                position={this.translateBigMapCoordinatesToMiniMapCoordinates(house.mapPosition)}
-              />
-            ))
-          }
-          <Square dimensions={
-            {
-              width: zoomPanelOverlyWidth,
-              height: zoomPanelOverlyHeight,
-              top: zoomPanelOverlyPositionTop,
-              left: zoomPanelOverlyPositionLeft
-            }}>
-          </Square>
-        </MapZoomPanel>
-        {selectedHouse && (
-          <HouseDetailsContainer>
-            <div>{selectedHouse.name}</div>
-            <img src={selectedHouse.image} alt=""/>
-          </HouseDetailsContainer>
-        )}
-
-      </MapContainer>
+            <Square
+              dimensions={
+                {
+                  width: zoomPanelOverlyWidth,
+                  height: zoomPanelOverlyHeight,
+                  top: zoomPanelOverlyPositionTop,
+                  left: zoomPanelOverlyPositionLeft
+                }}
+              color={selectedHouse && selectedHouse.backgroundColor}
+            >
+            </Square>
+          </MapZoomPanel>
+          {selectedHouse && <HouseDetailsContainer house={selectedHouse} onClick={this.closeSidePanel}>
+          </HouseDetailsContainer>}
+        </MapContainer>
+      </>
     )
   }
 
