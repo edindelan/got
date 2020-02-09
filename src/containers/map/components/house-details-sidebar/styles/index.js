@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const HouseDetailsContainer = styled.div`
   position: relative;
@@ -6,10 +6,10 @@ export const HouseDetailsContainer = styled.div`
   width: 30vw;
   min-width: 250px;
   height: 100%;
-  border-left: 10px solid ${({color}) => color || "#000"};
+  border-left: 10px solid ${({ color }) => color || '#000'};
   z-index: 100; 
   background: rgb(75,0,5);
-  background: linear-gradient(180deg, ${({color}) => color || "#000"} 0%, rgba(0,0,0,1) 100%);
+  background: linear-gradient(180deg, ${({ color }) => color || '#000'} 0%, rgba(0,0,0,1) 100%);
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -30,7 +30,7 @@ export const CloseButton = styled.div`
   top: 0;
   left: -50px;
   color: rgba(255,255,255,0.6);
-  background: ${({color}) => color || "#000"};
+  background: ${({ color }) => color || '#000'};
   display: flex;
   align-items: center;
   justify-content: center;

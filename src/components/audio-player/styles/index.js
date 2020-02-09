@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Player = styled.div`
   color: #fff;
@@ -7,3 +7,5 @@ export const Player = styled.div`
   pointer-events: initial;
   opacity: 0.6;
 `;
+
+export default Player;

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import BannerIcon from "../../../../../assets/svg-components/banner-icon";
+import styled from 'styled-components';
+import BannerIcon from '../../../../../components/svg-components/banner-icon';
 
 export const MapImageContainer = styled.div`
   overflow: auto;
@@ -17,8 +17,8 @@ export const OriginalSizeMapImage = styled.div`
 
 export const House = styled.div`
   width: 150px;
-  top: ${({position}) => position.y}px;
-  left: ${({position}) => position.x}px;
+  top: ${({ position }) => position.y}px;
+  left: ${({ position }) => position.x}px;
   transform: translate(-50%, -50%) scale(1);
   position: absolute;
   display: flex;
@@ -45,7 +45,7 @@ export const HouseName = styled.div`
   font-size: 24px;
   bottom: 105%;
   color: rgba(255,255,255,0.70); 
-  background-color: ${({color}) => color || "#000"};
+  background-color: ${({ color }) => color || '#000'};
   padding: 2px 20px 6px 20px;
   line-height: 1;
   & ~ div{
@@ -73,4 +73,3 @@ export const BannerIconRight = styled(BannerIcon)`
   bottom: 0;
   margin: auto;
 `;
-

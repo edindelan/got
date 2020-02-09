@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Header = styled.div`
   position: absolute;
@@ -13,7 +13,7 @@ export const Header = styled.div`
 
 export const Logo = styled.div`
   width: 20vw;
-  background-color: ${({color}) => color ? color : "#000"};
+  background-color: ${({ color }) => (color || '#000')};
   transition: background-color .3s linear;
   padding: 1vw 2vw;
   pointer-events: initial;

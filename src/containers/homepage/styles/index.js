@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const FirstHalf = styled.div`
+export const LeftSide = styled.div`
    height: 100%;
    width: 40%;
    display: flex; 
@@ -9,10 +9,10 @@ export const FirstHalf = styled.div`
    position: relative;
 `;
 
-export const SecondHalf = styled.div`
+export const RightSide = styled.div`
    height: 100%;
    width: 60%;
-   background-color: ${({color}) => color ? color : "#000"};
+   background-color: ${({ color }) => color || '#000'};
    transition: background-color .3s linear;
    display: flex;
    align-items: center; 
@@ -29,7 +29,7 @@ export const SliderControls = styled.div`
   position: absolute;
   bottom: 25px;
   right: -25px;
-  color: ${({color}) => color ? color : "#000"};
+  color: ${({ color }) => (color || '#000')};
   transition: background-color .3s linear;
 `;
 

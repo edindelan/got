@@ -1,16 +1,13 @@
-import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import styled from "styled-components";
+import styled from 'styled-components';
 
-
-const Slide = styled.div`
+export const Slide = styled.div`
    height: 100%;
    display: flex;
    padding: 20%;
    align-items: center;
 `;
 
-const Content = styled.div`
+export const Content = styled.div`
    color: #fff;
    
    h3 {
@@ -49,22 +46,3 @@ const Content = styled.div`
     font-weight: 400;
    }
 `;
-
-class HouseSlide extends Component {
-
-  render() {
-    const { data: { name, description, id}, className } = this.props;
-    return (
-      <Slide className={className}>
-          <Content>
-            <h3>HOUSE</h3>
-            <h2>{name}</h2>
-            <p>{description}</p>
-            <Link to={`/map/${id}`}>Find out more</Link>
-          </Content>
-      </Slide>
-    )
-  }
-}
-
-export default HouseSlide;
