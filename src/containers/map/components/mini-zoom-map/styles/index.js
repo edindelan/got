@@ -7,8 +7,7 @@ export const MiniZoomMap = styled.div`
   width: 250px;
   z-index: 100;
   user-select: none;
-  border-top: 10px solid ${({borderColor}) => borderColor || "#000"};
-  border-right: 10px solid ${({borderColor}) => borderColor || "#000"};
+  box-sizing: content-box;
   img {
     width: 100%;
     display: inline-block;
@@ -24,8 +23,21 @@ export const MiniZoomMap = styled.div`
     left: 0;
     right: 0;
     background-color: ${({borderColor}) => borderColor || "#000"};
+    transition: background-color .3s linear;
     opacity: 0.3;
     z-index: 10;
+  }
+  
+  &:after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    left: 0;
+    bottom: 0;
+    background-color: ${({borderColor}) => borderColor || "#000"};
+    transition: background-color .3s linear;
+    z-index: -1;
   }
 `;
 

@@ -1,17 +1,11 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import HouseDetailsContainer from "./components/house-details-sidebar";
 import MiniZoomMap from "./components/mini-zoom-map";
 import BigMap from "./components/big-map";
 import Header from "../../components/header";
-import { getPercent } from "../../utils";
+import { getPercent, getValueFromPercent, silentUrlChange } from "../../utils";
 import houses from "../../data/housesLocalData";
-
-const MapContainer = styled.div` 
-  height: 100%;
-  width: 100%;
-  display: flex;
-`;
+import {MapContainer} from './styles';
 
 class Map extends Component {
   state = {
@@ -55,7 +49,7 @@ class Map extends Component {
   focusMapOnHouse = house => {
     this.mapImageContainer.scrollTop = house.mapPosition.y - this.mapImageContainer.clientHeight/2;
     this.mapImageContainer.scrollLeft = house.mapPosition.x - this.mapImageContainer.clientWidth/2;
-    window.history.pushState({}, null, "/map/" + house.id)
+    silentUrlChange(`/map/${house.id}`);
   }
 
   findHouseById = id => houses.find(house => house.id === id);
@@ -63,6 +57,7 @@ class Map extends Component {
   handleZoomPanelClick = event => {
     //find coordinates of mouse click
     const bounds = event.target.getBoundingClientRect();
+    console.log('bounds', bounds, event.clientX, event.clientY)
     const x = event.clientX - bounds.left;
     const y = event.clientY - bounds.top;
 
@@ -70,9 +65,11 @@ class Map extends Component {
     const positionX = getPercent(x, bounds.width);
     const positionY = getPercent(y, bounds.height);
 
+    console.dir(this.mapImageContainer);
+
     //position the big map viewport to match mini map viewport indicator
-    this.mapImageContainer.scrollLeft = ((this.mapImageContainer.scrollWidth / 100) * positionX) - this.mapImageContainer.clientWidth/2;
-    this.mapImageContainer.scrollTop = ((this.mapImageContainer.scrollHeight / 100) * positionY) - this.mapImageContainer.clientHeight/2;
+    this.mapImageContainer.scrollLeft = getValueFromPercent(positionX, this.mapImageContainer.scrollWidth) - this.mapImageContainer.clientWidth/2;
+    this.mapImageContainer.scrollTop = getValueFromPercent(positionY, this.mapImageContainer.scrollHeight) - this.mapImageContainer.clientHeight/2;
   }
 
   handleHouseClick = (house) => {

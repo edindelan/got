@@ -2,125 +2,82 @@ import React, { Component } from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import styled from "styled-components";
-import "../../App.scss";
 import HouseHorizontalSlide from "../../components/house-horizontal-slide";
 import HouseHorizontalSimpleSlide from "../../components/house-horizontal-simple-slide";
 import HouseVerticalSlide from "../../components/house-vertical-slide";
 import Header from "../../components/header";
 import houses from "../../data/housesLocalData";
-
-const FirstHalf = styled.div`
-   height: 100%;
-   width: 40%;
-   display: flex; 
-   align-items: center;
-   justify-content: flex-end;
-   position: relative;
-`;
-
-const SecondHalf = styled.div`
-   height: 100%;
-   width: 60%;
-   background-color: ${({color}) => color ? color : "#000"};
-   transition: background-color .3s linear;
-   display: flex;
-   align-items: center; 
-`;
-
-const SliderContainer = styled.div`
-   height: 100%;
-   display: flex;
-   overflow: hidden;
-`;
-
-const SliderControls = styled.div`
-  z-index: 9999;
-  position: absolute;
-  bottom: 25px;
-  right: -25px;
-  color: ${({color}) => color ? color : "#000"};
-  transition: background-color .3s linear;
-`;
-
-const ArrowControlBox = styled.div`
-  width: 50px;
-  height: 50px;
-  background: #666;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  &:before {
-     font-size: 18px;
-     line-height: 0px;
-  }
-  
-`;
-
-const NextSlide = styled(ArrowControlBox)`
-  &:before {
-     content: '▶';
-  }
-  
-`;
-const PreviousSlide = styled(ArrowControlBox)`
-  &:before {
-     content: '◀';
-  }
-`;
-
-
-
+import {silentUrlChange} from "../../utils";
+import {
+  SliderContainer,
+  SecondHalf,
+  SliderControls,
+  NextSlide,
+  FirstHalf,
+  PreviousSlide,
+} from "./styles";
+import "../../App.scss";
 
 class Homepage extends Component {
   state = {
-    activeSlide: 0,
-    nav1: null,
-    nav2: null,
-    nav3: null,
+    activeSlide: 0
   };
 
   componentDidMount() {
-    this.setState({
-      nav1: this.slider1,
-      nav2: this.slider2,
-      nav3: this.slider3,
-    });
+    document.addEventListener("keydown", this.changeSlideWithKeyboard);
+    const { match: { params } } = this.props;
 
-    document.addEventListener("keydown", (event) => {
-      event.preventDefault();
-      const key = event.key;
-      switch (key) {
-        case "A":
-        case "a":
-        case "ArrowLeft":
-          this.changeSlide('left');
-          break;
-        case "D":
-        case "d":
-        case "ArrowRight":
-          this.changeSlide('right');
-          break;
-        default:
-          break;
+    if(params.id) {
+      this.setState({
+        activeSlide: params.id
+      }, () => {
+        this.verticalSlider.slickGoTo(params.id);
+      });
+    }
+  }
 
-      }
-    });
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.changeSlideWithKeyboard);
+  }
+
+  changeSlideWithKeyboard = event => {
+    event.preventDefault();
+    const key = event.key;
+    switch (key) {
+      case "A":
+      case "a":
+      case "ArrowLeft":
+        this.changeSlide('left');
+        break;
+      case "D":
+      case "d":
+      case "ArrowRight":
+        this.changeSlide('right');
+        break;
+      default:
+        break;
+    }
   }
 
   changeSlide = (direction = "left") => {
-    direction === "left" ? this.slider1.slickNext() : this.slider1.slickPrev();
+    direction === "left" ? this.verticalSlider.slickPrev() : this.verticalSlider.slickNext();
   }
 
   getCurrentSlideData = () => {
-    return this.state.nav1 ? this.state.nav1.props.children[this.state.activeSlide].props.data : {};
+    const { activeSlide } = this.state;
+    return this.verticalSlider ? this.verticalSlider.props.children[activeSlide].props.data : {};
   }
 
+  handleSliderAfterChange = current => {
+    this.setState({
+        activeSlide: current
+      }, () => {
+      silentUrlChange(`/slide/${this.state.activeSlide}`)
+    })
+  };
+
   render() {
-    const settings = {
+    const horizontalSliderSettings = {
       dots: false,
       infinite: true,
       speed: 500,
@@ -128,9 +85,10 @@ class Homepage extends Component {
       slidesToScroll: 1,
       arrows: false,
       fade: false,
+      draggable: false
     };
-    const settings2 = {
-      afterChange: current => this.setState({ activeSlide: current }, () => {window.history.pushState({}, null, "/slide/" + this.state.activeSlide)}),
+    const VerticalSliderSettings = {
+      afterChange: this.handleSliderAfterChange,
       dots: false,
       infinite: true,
       speed: 500,
@@ -138,6 +96,7 @@ class Homepage extends Component {
       slidesToScroll: -1,
       arrows: false,
       vertical: true,
+      draggable: false
     };
     const currentSlideData = this.getCurrentSlideData();
     return (
@@ -145,19 +104,26 @@ class Homepage extends Component {
         <Header color={currentSlideData.backgroundColor}/>
         <SliderContainer>
           <FirstHalf>
-            <Slider {...settings2} asNavFor={this.state.nav3} ref={slider => (this.slider1 = slider)}>
+            <Slider
+              {...VerticalSliderSettings}
+              asNavFor={this.horizontalSlider1}
+              ref={vs => (this.verticalSlider = vs)}>
               {
                 houses.map((house, index) => <HouseVerticalSlide
+                  index={house.id}
                   key={index}
                   data={house}
                 />)
               }
             </Slider>
             <SliderControls color={currentSlideData.backgroundColor}>
-              <NextSlide onClick={() => this.changeSlide('left')}/>
-              <PreviousSlide onClick={() => this.changeSlide('right')}/>
+              <NextSlide onClick={() => this.changeSlide('right')}/>
+              <PreviousSlide onClick={() => this.changeSlide('left')}/>
             </SliderControls>
-            <Slider {...settings} asNavFor={this.state.nav2} ref={slider => (this.slider3 = slider)}>
+            <Slider
+              {...horizontalSliderSettings}
+              asNavFor={this.horizontalSlider2}
+              ref={hs1 => (this.horizontalSlider1 = hs1)}>
               {
                 houses.map((house, index) => <HouseHorizontalSimpleSlide
                   key={index}
@@ -169,7 +135,9 @@ class Homepage extends Component {
             </Slider>
           </FirstHalf>
           <SecondHalf color={currentSlideData.backgroundColor}>
-            <Slider {...settings} ref={slider => (this.slider2 = slider)}>
+            <Slider
+              {...horizontalSliderSettings}
+              ref={hs2 => (this.horizontalSlider2 = hs2)}>
               {
                 houses.map((house, index) => <HouseHorizontalSlide
                   key={index}

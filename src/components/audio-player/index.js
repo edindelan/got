@@ -1,16 +1,8 @@
 import React, {Component} from "react";
-import styled from "styled-components";
 import song from "../../assets/got-song.mp3";
 import musicOn from "../../assets/images/music-on.svg";
 import musicOff from "../../assets/images/music-off.svg";
-
-const Player = styled.div`
-  color: #fff;
-  cursor: pointer;
-  padding: 20px;
-  pointer-events: initial;
-  opacity: 0.6;
-`;
+import { Player } from "./styles";
 
 
 class MusicPlayer extends Component {
@@ -21,32 +13,44 @@ class MusicPlayer extends Component {
 
   componentDidMount() {
     const { isMusicPlaying } = this.state;
-    this.player = new Audio(song);
-    this.player.loop = true;
+
+    this.createPlayer();
 
     if(isMusicPlaying) {
       this.player.play();
     }
 
-    document.addEventListener("keydown", event => {
-      event.preventDefault();
-      const key = event.key;
-      switch (key) {
-        case "M":
-        case "m":
-          this.togglePlayer();
-          break;
-        default:
-          break;
-      }
-    });
+    document.addEventListener("keydown", this.toggleMusicWithKeyboard);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.toggleMusicWithKeyboard)
+  }
+
+  createPlayer = () => {
+    this.player = new Audio(song);
+    this.player.loop = true;
+  }
+
+  toggleMusicWithKeyboard = event => {
+    event.preventDefault();
+    const key = event.key;
+    switch (key) {
+      case "M":
+      case "m":
+        this.togglePlayer();
+        break;
+      default:
+        break;
+    }
   }
 
   togglePlayer  = () => {
     this.setState({
       isMusicPlaying: this.player.paused
     }, () => {
-      this.state.isMusicPlaying ? this.player.play() : this.player.pause();
+      const {isMusicPlaying} = this.state;
+      isMusicPlaying ? this.player.play() : this.player.pause();
     });
   }
 

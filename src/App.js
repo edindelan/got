@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
@@ -12,21 +12,15 @@ const MainContainer = styled.div`
   position: relative;
 `;
 
-
-class App extends Component {
-
-  render() {
-    return (
-      <MainContainer>
-        <Switch>
-          <Route exact path="/" component={Homepage}/>
-          <Route exact path="/slide/:id" component={Homepage}/>
-          <Route exact path="/map" component={Map}/>
-          <Route exact path="/map/:id" component={Map}/>
-        </Switch>
-      </MainContainer>
-    );
-  }
-}
+const App = () => (
+  <MainContainer>
+    <Switch>
+      <Route exact path="/" component={Homepage}/>
+      <Route exact path="/slide/:id" component={Homepage}/>
+      <Route exact path="/map" component={Map}/>
+      <Route exact path="/map/:id" component={Map}/>
+    </Switch>
+  </MainContainer>
+);
 
 export default App;
