@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {
   Slide,
   Content,
-} from './styles';
+} from './styles/index';
 
 const HouseHorizontalSlide = ({ data: { name, description, id }, className }) => (
   <Slide className={className}>

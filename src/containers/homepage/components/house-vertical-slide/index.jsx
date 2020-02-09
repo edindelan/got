@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Slide,
   SignImage,
-} from './styles';
+} from './styles/index';
 
 const HouseVerticalSlide = ({ data: { image }, className }) => (
   <Slide className={className}>
