@@ -13,8 +13,17 @@ class MusicPlayer extends Component {
     };
   }
 
+  componentWillMount() {
+    const isMusicPlaying = JSON.parse(localStorage.getItem('isMusicPlaying'));
+    localStorage.setItem('isMusicPlaying', isMusicPlaying !== null ? isMusicPlaying : true);
+  }
+
   componentDidMount() {
-    const { isMusicPlaying } = this.state;
+    const isMusicPlaying = JSON.parse(localStorage.getItem('isMusicPlaying'));
+
+    this.setState({
+      isMusicPlaying,
+    });
 
     this.createPlayer();
 
@@ -30,8 +39,11 @@ class MusicPlayer extends Component {
   }
 
   createPlayer = () => {
+    const isMusicPlaying = JSON.parse(localStorage.getItem('isMusicPlaying'));
     this.player = new Audio(song);
     this.player.loop = true;
+    this.player.autoplay = true;
+    isMusicPlaying || this.player.pause();
   }
 
   toggleMusicWithKeyboard = (event) => {
@@ -53,11 +65,14 @@ class MusicPlayer extends Component {
     }, () => {
       const { isMusicPlaying } = this.state;
       isMusicPlaying ? this.player.play() : this.player.pause();
+      console.log('toggle', isMusicPlaying);
+      localStorage.setItem('isMusicPlaying', isMusicPlaying);
     });
   }
 
   render() {
     const { isMusicPlaying } = this.state;
+    console.log('PLAx render', isMusicPlaying);
     return (
       <Player onClick={this.togglePlayer}>
         <img src={isMusicPlaying ? musicOn : musicOff} alt="" />

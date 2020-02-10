@@ -9,4 +9,4 @@ export const silentUrlChange = (path) => window.history.pushState({}, null, path
 export const displayServerError = (url, status) => {
   throw new Error(`Error occurred while retrieving data from ${url}. 
     Server responded with status: ${status}`);
-}
+};

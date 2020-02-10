@@ -11,6 +11,12 @@ export const Header = styled.div`
   pointer-events: none;
 `;
 
+export const LeftSide = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Logo = styled.div`
   width: 20vw;
   background-color: ${({ color }) => (color || '#000')};
@@ -21,4 +27,51 @@ export const Logo = styled.div`
     width: 100%;
     opacity: 0.7;
   }
+`;
+
+export const Navigation = styled.div`
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  bottom: 0; 
+  align-items: center;
+  color: inherit;
+  font-weight: 400;
+  
+  a {
+    display: inline-block;
+    color: inherit;
+    text-decoration: none;
+    margin-left: 20px;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+    &:visited {
+      color: inherit;
+    }
+  }
+`;
+
+export const Menu = styled.div`
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 20px;
+  z-index: 9999;
+  pointer-events: initial;
+  font-family: "Roboto", serif;
+  position: relative;
+  color: ${({ color }) => (color || '#000')};
+  img {
+  cursor: pointer;
+    width: 30px;
+  }
+  
+  &:hover {
+    ${Navigation} {
+      display: flex;
+    }
+  }
+  
 `;

@@ -21,16 +21,15 @@ export const getHouse = async (id) => {
       const currentLordData = await getCurrentLord(house.currentLord);
       return {
         ...house,
-        currentLordData
+        currentLordData,
       };
     }
 
     return {
       ...house,
-      currentLordData: null
+      currentLordData: null,
     };
   }
-
 };
 
 const getCurrentLord = async (url) => {

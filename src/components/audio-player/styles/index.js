@@ -6,6 +6,10 @@ export const Player = styled.div`
   padding: 20px;
   pointer-events: initial;
   opacity: 0.6;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  z-index: 9999;
 `;
 
 export default Player;

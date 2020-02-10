@@ -46,8 +46,10 @@ class Map extends Component {
         selectedHouse: this.findHouseById(match.params.id),
       }, () => {
         const { selectedHouse } = this.state;
-        this.focusMapOnHouse(selectedHouse);
+        this.focusMapOnHouse(selectedHouse || houses[0]);
       });
+    } else {
+      this.focusMapOnHouse(houses[0]);
     }
   }
 

@@ -38,7 +38,7 @@ export const List = styled.div`
     
     td, th {
       color: rgba(255, 255, 255, 0.6);
-      font-size: 16px;
+      font-size: 14px;
       padding: 10px 3vw;
       border-bottom: 1px solid rgba(0, 0, 0, 0.3);
       transition: background-color .15s linear;
@@ -74,4 +74,3 @@ export const Pagination = styled.div`
     margin: 0 20px;
   }
 `;
-

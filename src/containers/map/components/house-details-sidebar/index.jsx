@@ -16,10 +16,10 @@ import deviderBottom from '../../../../assets/devider2.svg';
 import swords from '../../../../assets/swords.svg';
 
 const HouseDetailsSidebar = ({
-                               house,
-                               handleSidebarClose,
-                               loading = false
-                             }) => (
+  house,
+  handleSidebarClose,
+  loading = false,
+}) => (
   <HouseDetailsContainer color={house.backgroundColor}>
     <CloseButton color={house.backgroundColor} onClick={handleSidebarClose}>X</CloseButton>
     <ImageContainer>
@@ -33,38 +33,39 @@ const HouseDetailsSidebar = ({
     <br />
 
     {!loading
-      ? <Info>
-        <Item>
-          <Label>Current Lord:</Label>
-          <Name>{house.currentLordData && house.currentLordData.name}</Name>
-        </Item>
-        <Item>
-          <Label>Region:</Label>
-          <Name>{house.region}</Name>
-        </Item>
-        <Item>
-          <Label>Coat of Arms:</Label>
-          <Name>{house.coatOfArms}</Name>
-        </Item>
-        <Item>
-          <Label>Words:</Label>
-          <Name>{house.words}</Name>
-        </Item>
-        <Item>
-          <Label>Titles:</Label>
-          <Name>{house.titles && house.titles.join(', ')}</Name>
-        </Item>
-        <Item>
-          <Label>Founded:</Label>
-          <Name>{house.founded}</Name>
-        </Item>
-        <Item>
-          <Label>Sworn members:</Label>
-          <Name>{house.swornMembers && house.swornMembers.length}</Name>
-        </Item>
-      </Info>
-      : <Loader/>
-    }
+      ? (
+        <Info>
+          <Item>
+            <Label>Current Lord:</Label>
+            <Name>{house.currentLordData && house.currentLordData.name}</Name>
+          </Item>
+          <Item>
+            <Label>Region:</Label>
+            <Name>{house.region}</Name>
+          </Item>
+          <Item>
+            <Label>Coat of Arms:</Label>
+            <Name>{house.coatOfArms}</Name>
+          </Item>
+          <Item>
+            <Label>Words:</Label>
+            <Name>{house.words}</Name>
+          </Item>
+          <Item>
+            <Label>Titles:</Label>
+            <Name>{house.titles && house.titles.join(', ')}</Name>
+          </Item>
+          <Item>
+            <Label>Founded:</Label>
+            <Name>{house.founded}</Name>
+          </Item>
+          <Item>
+            <Label>Sworn members:</Label>
+            <Name>{house.swornMembers && house.swornMembers.length}</Name>
+          </Item>
+        </Info>
+      )
+      : <Loader />}
 
 
   </HouseDetailsContainer>

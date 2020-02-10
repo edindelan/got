@@ -17,8 +17,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server",
     "build": "webpack --production",
-    "lint": "eslint . --ext .js,.jsx",
-    "lint:fix": "eslint --fix . --ext .js,.jsx"
+    "lint": "eslint src --ext .js,.jsx",
+    "lint:fix": "eslint --fix src --ext .js,.jsx"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
