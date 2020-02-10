@@ -6,7 +6,7 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: './index.jsx',
   mode: 'development',
-  // devtool: '',
+  devtool: '',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name]-[contenthash].js',

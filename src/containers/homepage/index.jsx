@@ -137,8 +137,8 @@ class Homepage extends Component {
               }
             </Slider>
             <SliderControls color={backgroundColor}>
-              <NextSlide onClick={() => this.changeSlide('left')} />
-              <PreviousSlide onClick={() => this.changeSlide('right')} />
+              <NextSlide data-testid="next-slide" onClick={() => this.changeSlide('left')} />
+              <PreviousSlide data-testid="next-slide" onClick={() => this.changeSlide('right')} />
             </SliderControls>
             <Slider
               {...horizontalSliderSettings}

@@ -8,6 +8,8 @@ import Homepage from './containers/homepage';
 import Map from './containers/map';
 import HousesList from './containers/houses-list';
 import AudioPlayer from './components/audio-player';
+import NotFound from './components/not-found';
+import KeyboardShortcuts from './components/keyboard-shortcuts-info';
 
 const MainContainer = styled.div`
   height: 100vh;
@@ -16,6 +18,7 @@ const MainContainer = styled.div`
 
 const App = () => (
   <MainContainer>
+    <KeyboardShortcuts />
     <AudioPlayer />
     <Switch>
       <Route exact path="/" component={Homepage} />
@@ -25,6 +28,7 @@ const App = () => (
       <Route exact path="/list" component={HousesList} />
       <Route exact path="/list/:pageId" component={HousesList} />
       <Route exact path="/list/:pageId/house/:houseId" component={HousesList} />
+      <Route component={NotFound} />
     </Switch>
   </MainContainer>
 );
