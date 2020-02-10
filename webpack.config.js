@@ -6,6 +6,7 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: './index.jsx',
   mode: 'development',
+  // devtool: '',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name]-[contenthash].js',
@@ -56,5 +57,17 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
+  },
+  optimization: {
+    minimize: true,
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
   },
 };

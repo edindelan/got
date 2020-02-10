@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import './App.scss';
 import Homepage from './containers/homepage';
 import Map from './containers/map';
+import HousesList from './containers/houses-list';
 
 const MainContainer = styled.div`
   height: 100vh;
@@ -19,6 +20,7 @@ const App = () => (
       <Route exact path="/slide/:id" component={Homepage} />
       <Route exact path="/map" component={Map} />
       <Route exact path="/map/:id" component={Map} />
+      <Route exact path="/list" component={HousesList} />
     </Switch>
   </MainContainer>
 );

@@ -25,12 +25,19 @@ class Homepage extends Component {
     super();
     this.state = {
       activeSlide: 0,
+      horizontalSlider1Nav: null,
+      horizontalSlider2Nav: null,
     };
   }
 
   componentDidMount() {
     document.addEventListener('keydown', this.changeSlideWithKeyboard);
     const { match: { params } } = this.props;
+
+    this.setState({
+      horizontalSlider1Nav: this.horizontalSlider1,
+      horizontalSlider2Nav: this.horizontalSlider2,
+    });
 
     if (params.id) {
       this.setState({
@@ -83,6 +90,10 @@ class Homepage extends Component {
   };
 
   render() {
+    const {
+      horizontalSlider1Nav,
+      horizontalSlider2Nav,
+    } = this.state;
     const horizontalSliderSettings = {
       dots: false,
       infinite: true,
@@ -93,7 +104,7 @@ class Homepage extends Component {
       fade: false,
       draggable: false,
     };
-    const VerticalSliderSettings = {
+    const verticalSliderSettings = {
       afterChange: this.handleSliderAfterChange,
       dots: false,
       infinite: true,
@@ -111,26 +122,27 @@ class Homepage extends Component {
         <SliderContainer>
           <LeftSide>
             <Slider
-              {...VerticalSliderSettings}
-              asNavFor={this.horizontalSlider1}
+              {...verticalSliderSettings}
+              asNavFor={horizontalSlider1Nav}
               ref={(vs) => { this.verticalSlider = vs; }}
             >
               {
-                houses.map((house) => (
+                houses.map((house, index) => (
                   <HouseVerticalSlide
                     key={house.id}
+                    index={index}
                     data={house}
                   />
                 ))
               }
             </Slider>
             <SliderControls color={backgroundColor}>
-              <NextSlide onClick={() => this.changeSlide('right')} />
-              <PreviousSlide onClick={() => this.changeSlide('left')} />
+              <NextSlide onClick={() => this.changeSlide('left')} />
+              <PreviousSlide onClick={() => this.changeSlide('right')} />
             </SliderControls>
             <Slider
               {...horizontalSliderSettings}
-              asNavFor={this.horizontalSlider2}
+              asNavFor={horizontalSlider2Nav}
               ref={(hs1) => { this.horizontalSlider1 = hs1; }}
             >
               {
@@ -139,7 +151,6 @@ class Homepage extends Component {
                     key={house.id}
                     index={index}
                     data={house}
-                    {...this.state}
                   />
                 ))
               }
@@ -151,11 +162,11 @@ class Homepage extends Component {
               ref={(hs2) => { this.horizontalSlider2 = hs2; }}
             >
               {
-                houses.map((house) => (
+                houses.map((house, index) => (
                   <HouseHorizontalSlide
                     key={house.id}
+                    index={index}
                     data={house}
-                    {...this.state}
                   />
                 ))
               }

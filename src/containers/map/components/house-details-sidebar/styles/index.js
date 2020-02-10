@@ -24,6 +24,8 @@ export const HouseDetailsContainer = styled.div`
 `;
 
 export const CloseButton = styled.div`
+  font-family: 'Roboto', serif;
+  font-weight: 300;
   width: 50px;
   height: 50px;
   position: absolute;
