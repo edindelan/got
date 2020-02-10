@@ -5,23 +5,35 @@
 <h3 align="center" style="font-size: 1.2rem;">Game of Thrones Houses App</p>
 
 #### About the app
-   ```
-   Game of Thrones API doesn't provide much rich data/information other than simple 
-   text (e.g no images for the houses or characters) which would be useful to build nice looking app. 
-   So in hope to create something more interesting other than text app, 
-   I used local data with images for "The Great Houses".
+```
+Game of Thrones API doesn't provide much rich data/information other than simple 
+text (e.g no images for the houses or characters) which would be useful to build nice looking app. 
+So in hope to create something more interesting other than text app, 
+I used local data with images for "The Great Houses".
+
+# App pages/routes
+
+- homepage ['/']
+- homepage ['/slide/:slideId']
+   :: page that showcase 8 of The Great Houses from where it's 
+   :: possible to learn more about each (local data)
+- map of hauses ['/map']
+- map of hauses ['/map/:houseId']
+   :: map that showcase the locations of The Great Houses, clicking 
+   :: on the house will bring more info about the house (local data)
+- list hauses ['/list']
+- list hauses ['/list/:pageId']   
+- list hauses ['/list/:pageId/house/:houseId']     
+   :: list of the houses with pagination with possibility to 
+   :: get more info for the each house (server data)
    
-   #App pages/routes
-   - homepage ['/'] 
-       :: page that showcase 8 of The Great Houses from where it's 
-       :: possible to learn more about each (local data)
-   - map of hauses ['/map']
-       :: map that showcase the locations of The Great Houses, clicking 
-       :: on the house will bring more info about the house (local data)
-   - list hauses ['/list']    
-       :: list of the houses with pagination with possibility to 
-       :: get more info for the each house
-   ```
+
+# App keyboard shortcuts
+
+:: D, Right Arrow - Previous slide
+:: A, Left Arrow - Next slide
+:: M - Toggle background music 
+```
 
 #### Instructions
 ```
