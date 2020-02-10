@@ -60,12 +60,14 @@ yarn start or npm run start
 #### Technical dept
 
 ```
-Due time constraints and in intention to create an App with multiple screens and detail oriented features, I haven't finished the following: 
+Due time constraints and in intention to create an App with multiple screens 
+and detail oriented features, I haven't finished the following: 
 - app mobile support
 - more test coverage 
 - more detailed error handling for better UX 
-- add ability to map of the The Great Houses to navigate with dragging. Now is possible to navigate with clicking on 
-  the big or small map. Would be nice to have both.
+- add ability to map of the The Great Houses to navigate with dragging.
+  Now is possible to navigate with clicking on big or small map. 
+  Would be nice to have both.
 ```
 
 #### Run End 2 End test
