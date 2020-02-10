@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/edindelan/got/master/src/assets/images/houses/house1.png" alt="jest-puppeteer" title="jest-puppeteer" width="300">
 </h1>
 
-<p align="center" style="font-size: 1.2rem;">Game of Thrones Houses App</p>
+<h3 align="center" style="font-size: 1.2rem;">Game of Thrones Houses App</p>
 
 #### About the app
 ```bash
