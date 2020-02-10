@@ -18,6 +18,14 @@ export default [
       x: 1929,
       y: 1536,
     },
+    currentLordData: {name: "Queen Sansa Stark"},
+    region: "The North",
+    coatOfArms: "A grey direwolf on a white field",
+    words: "Winter Is Coming",
+    titles: ['Kings in the North', 'Lords of Winterfell',
+      'Lords Paramount of the North', 'Wardens of the North'],
+    founded: "Over 8,000 years",
+    swornMembersCount: 88
   },
   {
     id: '2',
@@ -29,6 +37,14 @@ export default [
       x: 736,
       y: 1667,
     },
+    currentLordData: {name: "Cersei Lannister"},
+    region: "The Westerlands",
+    coatOfArms: "A gold lion, on a crimson field(Gules, a lion or)",
+    words: "Hear Me Roar!",
+    titles: ['King of the Rock', 'Lord of Casterly Rock',
+      'Shield of Lannisport', 'Warden of the West'],
+    founded: "Age of Heroes",
+    swornMembersCount: 79
   },
   {
     id: '3',
@@ -40,6 +56,13 @@ export default [
       x: 2379,
       y: 2151,
     },
+    currentLordData: {name: "Stannis Baratheon"},
+    region: "The Crownlands",
+    coatOfArms: "Or, a heart gules enflamed proper charged with a stag's head sable crowned of the field",
+    words: "",
+    titles: ['Lord of Dragonstone', 'King of Westeros'],
+    founded: "284 AC",
+    swornMembersCount: 27
   },
   {
     id: '4',
@@ -51,6 +74,13 @@ export default [
       x: 3386,
       y: 1282,
     },
+    currentLordData: {name: "Robert Arryn"},
+    region: "The Vale",
+    coatOfArms: "A sky-blue falcon soaring against a white moon, on a sky-blue field(Bleu celeste, upon a plate a falcon volant of the field)",
+    words: "As High as Honor",
+    titles: ['King of Mountain and Vale', 'Lord of the Eyrie', 'Defender of the Vale', 'Warden of the East'],
+    founded: "Coming of the Andals",
+    swornMembersCount: 24
   },
   {
     id: '5',
@@ -62,6 +92,13 @@ export default [
       x: 3358,
       y: 2068,
     },
+    currentLordData: {name: "Edmure Tully"},
+    region: "The Riverlands",
+    coatOfArms: "A leaping silver trout on a field of blue and mud red(Paly wavy azure and gules, a trout embowed argent)",
+    words: "Family, Duty, Honor",
+    titles: [],
+    founded: "'Lord of Riverrun', 'Lord Paramount of the Trident'",
+    swornMembersCount: 17
   },
   {
     id: '6',
@@ -73,6 +110,13 @@ export default [
       x: 2000,
       y: 1900,
     },
+    currentLordData: {name: "Prince Martell"},
+    region: "Dorne",
+    coatOfArms: "A red sun pierced by a gold spear, on an orange field. Formerly just a gold spear on an orange field",
+    words: "Unbowed, Unbent, Unbroken",
+    titles: ['Princes of Dorne', 'Lords of Sunspear'],
+    founded: "",
+    swornMembersCount: 23
   },
   {
     id: '7',
@@ -84,6 +128,14 @@ export default [
       x: 950,
       y: 550,
     },
+    currentLordData: {name: "Daenerys Targaryen"},
+    region: "The Crownlands",
+    coatOfArms: "Sable, a dragon thrice-headed gules",
+    words: "Fire and Blood",
+    titles: ['King of the Andals', 'The Rhoynar and the First Men',
+      'Lord of the Seven Kingdoms', 'Prince of Summerhall'],
+    founded: "House Targaryen: >114 BCHouse Targaryen of King's Landing:1 AC",
+    swornMembersCount: 101
   },
   {
     id: '8',
@@ -95,5 +147,13 @@ export default [
       x: 2500,
       y: 1500,
     },
+    currentLordData: {name: "Mace Tyrell"},
+    region: "The Reach",
+    coatOfArms: "Vert, a rose Or",
+    words: "Growing Strong",
+    titles: ['Lord of Highgarden', 'Defender of the Marches', 'High Marshal of the Reach',
+      'Warden of the South', 'Lord Paramount of the Mander', 'High Steward of Highgarden'],
+    founded: "",
+    swornMembersCount: 44
   },
 ];

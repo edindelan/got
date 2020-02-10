@@ -61,7 +61,7 @@ const HouseDetailsSidebar = ({
           </Item>
           <Item>
             <Label>Sworn members:</Label>
-            <Name>{house.swornMembers && house.swornMembers.length}</Name>
+            <Name>{house.swornMembersCount || house.swornMembers && house.swornMembers.length}</Name>
           </Item>
         </Info>
       )
