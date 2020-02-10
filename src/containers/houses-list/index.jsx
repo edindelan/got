@@ -10,7 +10,7 @@ import {
   getHouses,
   getHouse,
 } from '../../service';
-import {silentUrlChange} from '../../utils';
+import { silentUrlChange } from '../../utils';
 import Header from '../../components/header';
 import HouseDetailsSidebar from '../map/components/house-details-sidebar';
 import swords from '../../assets/swords.svg';
@@ -30,14 +30,14 @@ class HousesList extends Component {
 
   componentDidMount() {
     const { currentPage } = this.state;
-    const { match: { params }} = this.props;
-    console.log('params', params)
-    this.changePage(params.pageId || currentPage)
+    const { match: { params } } = this.props;
+    console.log('params', params);
+    this.changePage(params.pageId || currentPage);
   }
 
   changePage = async (page = 1) => {
     const { selectedHouse } = this.state;
-    const { match: { params }} = this.props;
+    const { match: { params } } = this.props;
     if (page >= 1) {
       const houses = await getHouses(page);
       this.setState({
@@ -47,7 +47,7 @@ class HousesList extends Component {
         silentUrlChange(`/list/${page}`);
       });
 
-      if(params.houseId && !selectedHouse) {
+      if (params.houseId && !selectedHouse) {
         const house = await getHouse(params.houseId);
         this.setState({
           selectedHouse: house,
@@ -55,7 +55,6 @@ class HousesList extends Component {
           silentUrlChange(`/list/${page}/house/${params.houseId}`);
         });
       }
-
     }
   }
 
@@ -66,9 +65,11 @@ class HousesList extends Component {
     this.setState({
       selectedHouse,
       loading: false,
-    }, () => {{
-      silentUrlChange(`/list/${currentPage}/house/${getHouseId(selectedHouse)}`);
-    }});
+    }, () => {
+      {
+        silentUrlChange(`/list/${currentPage}/house/${getHouseId(selectedHouse)}`);
+      }
+    });
   }
 
   handleSidebarClose = () => {
