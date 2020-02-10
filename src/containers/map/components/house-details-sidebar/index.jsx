@@ -61,7 +61,10 @@ const HouseDetailsSidebar = ({
           </Item>
           <Item>
             <Label>Sworn members:</Label>
-            <Name>{house.swornMembersCount || house.swornMembers && house.swornMembers.length}</Name>
+            <Name>
+              {house.swornMembersCount
+            || (house.swornMembers && house.swornMembers.length)}
+            </Name>
           </Item>
         </Info>
       )
@@ -76,4 +79,9 @@ export default HouseDetailsSidebar;
 HouseDetailsSidebar.propTypes = {
   handleSidebarClose: PropTypes.func.isRequired,
   house: PropTypes.objectOf(PropTypes.any).isRequired,
+  loading: PropTypes.bool,
+};
+
+HouseDetailsSidebar.defaultProps = {
+  loading: false,
 };

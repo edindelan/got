@@ -31,7 +31,6 @@ class HousesList extends Component {
   componentDidMount() {
     const { currentPage } = this.state;
     const { match: { params } } = this.props;
-    console.log('params', params);
     this.changePage(params.pageId || currentPage);
   }
 
@@ -66,9 +65,7 @@ class HousesList extends Component {
       selectedHouse,
       loading: false,
     }, () => {
-      {
-        silentUrlChange(`/list/${currentPage}/house/${getHouseId(selectedHouse)}`);
-      }
+      silentUrlChange(`/list/${currentPage}/house/${getHouseId(selectedHouse)}`);
     });
   }
 
@@ -119,9 +116,9 @@ class HousesList extends Component {
             </table>
           </List>
           <Pagination>
-            <div onClick={() => this.changePage(parseInt(currentPage) - 1)}>Previous</div>
+            <div onClick={() => this.changePage(parseInt(currentPage, 10) - 1)}>Previous</div>
             <div>{currentPage}</div>
-            <div onClick={() => this.changePage(parseInt(currentPage) + 1)}>Next</div>
+            <div onClick={() => this.changePage(parseInt(currentPage, 10) + 1)}>Next</div>
           </Pagination>
         </ListWrapper>
         {selectedHouse && (
@@ -138,5 +135,7 @@ class HousesList extends Component {
 
 export default HousesList;
 
-HousesList.propTypes = {};
+HousesList.propTypes = {
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 HousesList.defaultProps = {};

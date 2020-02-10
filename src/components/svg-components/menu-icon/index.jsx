@@ -19,5 +19,9 @@ export default MenuIcon;
 
 MenuIcon.propTypes = {
   color: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
+};
+
+MenuIcon.defaultProps = {
+  className: '',
 };

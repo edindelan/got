@@ -11,9 +11,7 @@ class MusicPlayer extends Component {
     this.state = {
       isMusicPlaying: false,
     };
-  }
 
-  componentWillMount() {
     const isMusicPlaying = JSON.parse(localStorage.getItem('isMusicPlaying'));
     localStorage.setItem('isMusicPlaying', isMusicPlaying !== null ? isMusicPlaying : true);
   }
@@ -65,14 +63,12 @@ class MusicPlayer extends Component {
     }, () => {
       const { isMusicPlaying } = this.state;
       isMusicPlaying ? this.player.play() : this.player.pause();
-      console.log('toggle', isMusicPlaying);
       localStorage.setItem('isMusicPlaying', isMusicPlaying);
     });
   }
 
   render() {
     const { isMusicPlaying } = this.state;
-    console.log('PLAx render', isMusicPlaying);
     return (
       <Player onClick={this.togglePlayer}>
         <img src={isMusicPlaying ? musicOn : musicOff} alt="" />

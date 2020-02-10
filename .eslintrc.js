@@ -31,7 +31,11 @@ module.exports = {
         "react/no-unescaped-entities": "off",
         "react/jsx-props-no-spreading": "off",
         "no-unused-expressions": "off",
+        "jsx-a11y/control-has-associated-label": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
       }
     }
-  ]
+  ],
+
 };

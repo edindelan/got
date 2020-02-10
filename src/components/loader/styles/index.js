@@ -22,3 +22,5 @@ export const Loader = styled.div`
     }
   }
 `;
+
+export default Loader;
