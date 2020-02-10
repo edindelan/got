@@ -35,7 +35,7 @@ I used local data with images for "The Great Houses".
 :: M - Toggle background music 
 ```
 
-#### App screen shots
+#### App screenshots
 
 <h1 align="center">
   <img src="https://raw.githubusercontent.com/edindelan/got/master/src/misc/screen-1.png" width="auto">
