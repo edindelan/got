@@ -49,10 +49,6 @@ I used local data with images for "The Great Houses".
   <img src="https://raw.githubusercontent.com/edindelan/got/master/src/misc/screen-3.png" width="auto">
 </h1>
 
-<img src="https://raw.githubusercontent.com/edindelan/got/master/src/misc/screen-1.png" width="auto">
-<img src="https://raw.githubusercontent.com/edindelan/got/master/src/misc/screen-2.png" width="auto">
-<img src="https://raw.githubusercontent.com/edindelan/got/master/src/misc/screen-3.png" width="auto">
-
 #### Instructions
 ```
 # install the app 
