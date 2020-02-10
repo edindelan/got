@@ -5,22 +5,23 @@ export const KeyboardShortcuts = styled.div`
   height: 100px;
   background-color: #000;
   position: fixed;
-  bottom: -100px;
-  right: 30vw;
+  left: -200px;
+  top: 45%;
   z-index: 99999;
   opacity: 0.8;
   &:hover {
-    bottom: 0;
+    left: 0;
   } 
 `;
 
 export const Keyboard = styled.div` 
   background-color: #000;
   position: absolute;
-  top: -30px;
+  right: -33px;
   padding: 5px;
-  img {
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Info = styled.div` 
