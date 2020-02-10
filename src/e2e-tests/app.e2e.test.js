@@ -6,8 +6,8 @@ describe('E2E test suit', () => {
   let browser;
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: false,
-      slowMo: 50,
+      // headless: true,
+      // slowMo: 50,
       defaultViewport: {
         width: 960,
         height: 600,
