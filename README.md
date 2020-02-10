@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://raw.githubusercontent.com/edindelan/got/master/src/assets/images/houses/house1.png" alt="jest-puppeteer" title="jest-puppeteer" width="300">
+  <img src="https://raw.githubusercontent.com/edindelan/got/master/src/assets/images/houses/house1.png" width="300">
 </h1>
 
 <h3 align="center" style="font-size: 1.2rem;">Game of Thrones Houses App</p>
@@ -34,6 +34,24 @@ I used local data with images for "The Great Houses".
 :: A, Left Arrow - Next slide
 :: M - Toggle background music 
 ```
+
+#### App screen shots
+
+<h1 align="center">
+  <img src="https://raw.githubusercontent.com/edindelan/got/master/src/misc/screen-1.png" width="auto">
+</h1>
+
+<h1 align="center">
+  <img src="https://raw.githubusercontent.com/edindelan/got/master/src/misc/screen-2.png" width="auto">
+</h1>
+
+<h1 align="center">
+  <img src="https://raw.githubusercontent.com/edindelan/got/master/src/misc/screen-3.png" width="auto">
+</h1>
+
+<img src="https://raw.githubusercontent.com/edindelan/got/master/src/misc/screen-1.png" width="auto">
+<img src="https://raw.githubusercontent.com/edindelan/got/master/src/misc/screen-2.png" width="auto">
+<img src="https://raw.githubusercontent.com/edindelan/got/master/src/misc/screen-3.png" width="auto">
 
 #### Instructions
 ```
